@@ -85,4 +85,33 @@ def show_normal_distribution(language):
         mean = st.number_input('平均 (μ) を入力してください:', value=0.0, step=0.1)
         std_dev = st.number_input('標準偏差 (σ) を入力してください:', value=1.0, step=0.1, min_value=0.1)
         x_value_input = st.text_input('x値を入力してください（正規分布）:', value="")
-       
+        p_value_input = st.text_input('p値を入力してください（0から1の間）:', value="")
+
+        # 初期化
+        x_value = None
+        p_value = None
+
+        # どちらかが入力されたら計算
+        if x_value_input:
+            try:
+                x_value = float(x_value_input)
+                p_value = norm.cdf(x_value, loc=mean, scale=std_dev)
+            except ValueError:
+                st.error("無効な x 値です")
+
+        elif p_value_input:
+            try:
+                p_value = float(p_value_input)
+                if 0 <= p_value <= 1:
+                    x_value = norm.ppf(p_value, loc=mean, scale=std_dev)
+                else:
+                    st.error("p値は 0 から 1 の間でなければなりません")
+            except ValueError:
+                st.error("無効な p 値です")
+
+        # 計算結果の表示
+        if x_value is not None and p_value is not None:
+            st.write(f"x値は: {x_value:.4f}")
+            st.write(f"p値は: {p_value:.4f}")
+
+            # 正規分布の図を
