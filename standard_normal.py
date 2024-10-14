@@ -99,6 +99,3 @@ def show_standard_normal():
             ax.axvline(x=x_value, color='red', linestyle='--')
 
             st.pyplot(fig)
-
-# アプリ実行
-show_standard_normal()
