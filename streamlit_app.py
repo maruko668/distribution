@@ -13,13 +13,7 @@ menu = st.sidebar.selectbox(
 )
 # メニューと選択された言語に基づいて表示を切り替え
 if menu == "Standard Normal Distribution / 標準正規分布":
-    if language == "English":
-        standard_normal.show_standard_normal()
-    elif language == "日本語":
-        standard_normal.show_standard_normal()
+    standard_normal.show_standard_normal(language)
 
 elif menu == "Normal Distribution / 正規分布":
-    if language == "English":
-        normal_distribution.show_normal_distribution()
-    elif language == "日本語":
-        normal_distribution.show_normal_distribution()
+    normal_distribution.show_normal_distribution(language)
