@@ -27,7 +27,6 @@ def show_standard_normal():
         ax.plot(x, y, label='Standard Normal Distribution')
         ax.fill_between(x, 0, y, where=(x <= x_value), color='blue', alpha=0.3)
         ax.axvline(x=x_value, color='red', linestyle='--')
-        ax.legend()
 
         st.pyplot(fig)
 
