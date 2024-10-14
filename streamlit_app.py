@@ -21,10 +21,12 @@ language = st.sidebar.radio("Choose your language / 言語を選んでくださ�
 # メインメニューとして表示するオプション
 menu = st.sidebar.selectbox(
     "Select a distribution / 分布を選んでください",
-    ["Standard Normal Distribution / 標準正規分布", "Normal Distribution / 正規分布"]
+    ["Home", "Standard Normal Distribution / 標準正規分布", "Normal Distribution / 正規分布"]
 )
 # メニューと選択された言語に基づいて表示を切り替え
-if menu == "Standard Normal Distribution / 標準正規分布":
+if menu == "Home":
+    show_top_page()
+elif menu == "Standard Normal Distribution / 標準正規分布":
     standard_normal.show_standard_normal(language)
 
 elif menu == "Normal Distribution / 正規分布":
