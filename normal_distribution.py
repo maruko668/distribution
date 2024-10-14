@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
-def show_normal_distribution():
+def show_normal_distribution(language):
     st.title("Normal Distribution")
 
     # ユーザーから平均と標準偏差を入力
