@@ -6,18 +6,37 @@ from scipy.stats import norm
 def show_standard_normal():
     st.title("Standard Normal Distribution")
 
-    # x値の入力
-    x_value = st.number_input('Enter a value for x (Standard Normal Distribution):', value=0.0, step=0.1)
-    p_value = st.number_input('Enter a p-value (between 0 and 1) to find the corresponding x-value:', value=0.5, min_value=0.0, max_value=1.0, step=0.01)
+    # ユーザーからx値またはp値のどちらかを入力
+    x_value_input = st.text_input('Enter a value for x (z-score):', value="")
+    p_value_input = st.text_input('Enter a p-value (between 0 and 1):', value="")
 
-    # p値からx値を計算
-    x_from_p = norm.ppf(p_value)
+    # 初期化
+    x_value = None
+    p_value = None
 
-    # x_from_pの表示
-    st.write(f"The x-value for p = {p_value} is: {x_from_p:.4f}")
+    # どちらかが入力されたら計算
+    if x_value_input:
+        try:
+            x_value = float(x_value_input)
+            p_value = norm.cdf(x_value)
+        except ValueError:
+            st.error("Invalid x-value")
 
-    # グラフが変化する要因（p値またはx値の変更）に基づいて再描画する
-    if st.button('Update graph'):
+    elif p_value_input:
+        try:
+            p_value = float(p_value_input)
+            if 0 <= p_value <= 1:
+                x_value = norm.ppf(p_value)
+            else:
+                st.error("p-value must be between 0 and 1")
+        except ValueError:
+            st.error("Invalid p-value")
+
+    # 計算結果の表示
+    if x_value is not None and p_value is not None:
+        st.write(f"The x-value (z-score) is: {x_value:.4f}")
+        st.write(f"The p-value is: {p_value:.4f}")
+
         # 標準正規分布の図を表示
         x = np.linspace(-4, 4, 1000)
         y = norm.pdf(x)
@@ -29,7 +48,3 @@ def show_standard_normal():
         ax.axvline(x=x_value, color='red', linestyle='--')
 
         st.pyplot(fig)
-
-        # x値からp値を計算して表示
-        p_from_x = norm.cdf(x_value)
-        st.write(f'The p-value for x = {x_value} is: {p_from_x:.4f}')
