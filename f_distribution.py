@@ -58,16 +58,19 @@ def show_f_distribution(language):
             st.write(f"The x-value is: {x_value:.4f}")
             st.write(f"The p-value is: {p_value:.4f}")
 
-            # F分布の図を表示
+            # F分布の図を表示（右側塗りつぶし）
             x = np.linspace(0, 5, 1000)
             y = f.pdf(x, dfn, dfd)
 
             # 図のサイズを半分に設定
             fig, ax = plt.subplots(figsize=(5, 3))
             ax.plot(x, y, label=f'F Distribution (dfn={dfn}, dfd={dfd})')
-            ax.fill_between(x, 0, y, where=(x <= x_value), color='blue', alpha=0.3)
+            
+            # 右側塗りつぶし (x_valueより大きい部分)
+            ax.fill_between(x, 0, y, where=(x >= x_value), color='blue', alpha=0.3)
             ax.axvline(x=x_value, color='red', linestyle='--')
 
+            ax.legend()
             st.pyplot(fig)
 
     elif language == "日本語":
@@ -124,14 +127,17 @@ def show_f_distribution(language):
             st.write(f"x値は: {x_value:.4f}")
             st.write(f"p値は: {p_value:.4f}")
 
-            # F分布の図を表示
+            # F分布の図を表示（右側塗りつぶし）
             x = np.linspace(0, 5, 1000)
             y = f.pdf(x, dfn, dfd)
 
             # 図のサイズを半分に設定
             fig, ax = plt.subplots(figsize=(5, 3))
             ax.plot(x, y, label=f'F分布 (dfn={dfn}, dfd={dfd})')
-            ax.fill_between(x, 0, y, where=(x <= x_value), color='blue', alpha=0.3)
+            
+            # 右側塗りつぶし (x_valueより大きい部分)
+            ax.fill_between(x, 0, y, where=(x >= x_value), color='blue', alpha=0.3)
             ax.axvline(x=x_value, color='red', linestyle='--')
 
+            ax.legend()
             st.pyplot(fig)
