@@ -3,13 +3,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
-# 言語切り替えのメニュー
-st.sidebar.markdown("### 言語選択 / Language Selection")
-language = st.sidebar.radio("Choose your language / 言語を選んでください", ("English", "日本語"))
-
 def show_standard_normal(language):
     if language == "English":
         st.title("Standard Normal Distribution")
+
+        st.write("""
+        The probability density function (PDF) for the standard normal distribution is given by the formula:
+
+        $$
+        f(x) = \\frac{1}{\\sqrt{2\\pi}} e^{-\\frac{x^2}{2}}
+        $$
+
+        where:
+        - $x$ is the z-score.
+        """)
 
         # ユーザーからx値またはp値のどちらかを入力
         x_value_input = st.text_input('Enter a value for x (z-score):', value="")
@@ -56,6 +63,17 @@ def show_standard_normal(language):
 
     elif language == "日本語":
         st.title("標準正規分布")
+
+        st.write("""
+        標準正規分布の確率密度関数（PDF）は次の式で表されます：
+
+        $$
+        f(x) = \\frac{1}{\\sqrt{2\\pi}} e^{-\\frac{x^2}{2}}
+        $$
+
+        ここで:
+        - $x$ はz値（zスコア）です。
+        """)
 
         # ユーザーからx値またはp値のどちらかを入力
         x_value_input = st.text_input('x値を入力してください（z値）:', value="")
