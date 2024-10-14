@@ -11,13 +11,17 @@ def show_normal_distribution(language):
         The probability density function (PDF) for the normal distribution is given by the formula:
 
         $$
-        f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}}
+        f(x; \mu, \sigma) = \\frac{1}{\sigma\sqrt{2\pi}} e^{-\\frac{(x - \mu)^2}{2\sigma^2}}
         $$
 
         where:
-        - $x$ is the variable.
-        - $\\mu$ is the mean.
-        - $\\sigma$ is the standard deviation.
+        - $x$ is the random variable.
+        - $\\mu$ is the mean (location parameter).
+        - $\\sigma$ is the standard deviation (scale parameter).
+        """)
+
+        st.write("""
+        The normal distribution is one of the most commonly used distributions in statistics. It is symmetric about its mean and its spread is determined by the standard deviation.
         """)
 
         # ユーザーから平均と標準偏差、x値またはp値のどちらかを入力
@@ -72,13 +76,17 @@ def show_normal_distribution(language):
         正規分布の確率密度関数（PDF）は次の式で表されます：
 
         $$
-        f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}}
+        f(x; \mu, \sigma) = \\frac{1}{\sigma\sqrt{2\pi}} e^{-\\frac{(x - \mu)^2}{2\sigma^2}}
         $$
 
         ここで:
-        - $x$ は変数です。
-        - $\\mu$ は平均値です。
-        - $\\sigma$ は標準偏差です。
+        - $x$ はランダム変数です。
+        - $\\mu$ は平均値（位置パラメータ）です。
+        - $\\sigma$ は標準偏差（スケールパラメータ）です。
+        """)
+
+        st.write("""
+        正規分布は統計において最もよく使用される分布の1つです。平均を中心に対称であり、標準偏差によって広がりが決まります。
         """)
 
         # ユーザーから平均と標準偏差、x値またはp値のどちらかを入力
@@ -114,4 +122,14 @@ def show_normal_distribution(language):
             st.write(f"x値は: {x_value:.4f}")
             st.write(f"p値は: {p_value:.4f}")
 
-            # 正規分布の図を
+            # 正規分布の図を表示
+            x = np.linspace(mean - 4*std_dev, mean + 4*std_dev, 1000)
+            y = norm.pdf(x, loc=mean, scale=std_dev)
+
+            # 図のサイズを半分に設定
+            fig, ax = plt.subplots(figsize=(5, 3))
+            ax.plot(x, y, label=f'正規分布 (μ={mean}, σ={std_dev})')
+            ax.fill_between(x, 0, y, where=(x <= x_value), color='green', alpha=0.3)
+            ax.axvline(x=x_value, color='red', linestyle='--')
+
+            st.pyplot(fig)
