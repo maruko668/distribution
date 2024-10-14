@@ -7,7 +7,7 @@ from scipy.stats import norm
 st.sidebar.markdown("### 言語選択 / Language Selection")
 language = st.sidebar.radio("Choose your language / 言語を選んでください", ("English", "日本語"))
 
-def show_standard_normal():
+def show_standard_normal(language):
     if language == "English":
         st.title("Standard Normal Distribution")
 
