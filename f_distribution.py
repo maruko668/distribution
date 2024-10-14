@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import f
+import japanize_matplotlib
 
 def show_f_distribution(language):
     if language == "English":
@@ -108,7 +109,7 @@ def show_f_distribution(language):
         if x_value_input:
             try:
                 x_value = float(x_value_input)
-                p_value = f.cdf(x_value, dfn, dfd)
+                p_value = 1-f.cdf(x_value, dfn, dfd)
             except ValueError:
                 st.error("無効な x 値です")
 
