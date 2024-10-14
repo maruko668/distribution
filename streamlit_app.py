@@ -1,6 +1,7 @@
 import streamlit as st
 import standard_normal
 import normal_distribution
+import f_distribution  # F分布用のモジュールを追加
 
 # トップページの作成
 def show_top_page():
@@ -11,6 +12,7 @@ def show_top_page():
     st.subheader("Available Distributions")
     st.write("1. Standard Normal Distribution (標準正規分布)")
     st.write("2. Normal Distribution (正規分布)")
+    st.write("3. F Distribution (F分布)")
 
     st.write("Use the sidebar to select a distribution and start calculating.")
 
@@ -18,16 +20,18 @@ def show_top_page():
 st.sidebar.markdown("### 言語選択 / Language Selection")
 language = st.sidebar.radio("Choose your language / 言語を選んでください", ("English", "日本語"))
 
-# メインメニューとして表示するオプション
+# メインメニューの作成（トップページと各分布計算ページ）
 menu = st.sidebar.selectbox(
-    "Select a distribution / 分布を選んでください",
-    ["Home", "Standard Normal Distribution / 標準正規分布", "Normal Distribution / 正規分布"]
+    "Select a page / ページを選んでください",
+    ["Home", "Standard Normal Distribution / 標準正規分布", "Normal Distribution / 正規分布", "F Distribution / F分布"]
 )
-# メニューと選択された言語に基づいて表示を切り替え
+
+# メニューに基づいてページを切り替え
 if menu == "Home":
     show_top_page()
 elif menu == "Standard Normal Distribution / 標準正規分布":
     standard_normal.show_standard_normal(language)
-
 elif menu == "Normal Distribution / 正規分布":
     normal_distribution.show_normal_distribution(language)
+elif menu == "F Distribution / F分布":
+    f_distribution.show_f_distribution(language)
