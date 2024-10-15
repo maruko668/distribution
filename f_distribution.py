@@ -48,7 +48,7 @@ def show_f_distribution(language):
             try:
                 p_value = float(p_value_input)
                 if 0 <= p_value <= 1:
-                    x_value = f.ppf(p_value, dfn, dfd)
+                    x_value = f.ppf(1-p_value, dfn, dfd)
                 else:
                     st.error("p-value must be between 0 and 1")
             except ValueError:
