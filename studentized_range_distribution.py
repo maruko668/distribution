@@ -1,19 +1,10 @@
 import streamlit as st
 import scipy.stats as stats
+import numpy as np
+import matplotlib.pyplot as plt
 
 # 自由度とp値からx値を求める関数
 def p_to_x(groups, total_data, p_value):
-    """
-    グループ数と全体のデータ数に基づいて p値 から x値 を求める (studentized range distribution).
-    
-    Parameters:
-    groups (int): グループ数
-    total_data (int): 全体のデータ数
-    p_value (float): p値
-    
-    Returns:
-    float: 対応する x値
-    """
     dfn = groups  # グループ数
     dfd = total_data - groups  # 全体のデータ数 - グループ数
     try:
@@ -24,17 +15,6 @@ def p_to_x(groups, total_data, p_value):
 
 # 自由度とx値からp値を求める関数
 def x_to_p(groups, total_data, x_value):
-    """
-    グループ数と全体のデータ数に基づいて x値 から p値 を求める (studentized range distribution).
-    
-    Parameters:
-    groups (int): グループ数
-    total_data (int): 全体のデータ数
-    x_value (float): x値
-    
-    Returns:
-    float: 対応する p値
-    """
     dfn = groups  # グループ数
     dfd = total_data - groups  # 全体のデータ数 - グループ数
     try:
@@ -42,6 +22,28 @@ def x_to_p(groups, total_data, x_value):
         return p_value
     except Exception as e:
         return str(e)
+
+# 図を描画する関数
+def plot_studentized_range(groups, total_data, x_value):
+    dfn = groups
+    dfd = total_data - groups
+    x = np.linspace(0, 10, 500)  # x軸の範囲
+    y = stats.studentized_range.pdf(x, dfn, dfd)  # 確率密度関数 (PDF)
+    
+    # 図の作成
+    fig, ax = plt.subplots(figsize=(5, 3))
+    ax.plot(x, y, label=f"Studentized Range PDF (groups={dfn}, data={dfd})")
+    
+    # x_valueが存在すれば、その位置に線を引く
+    if x_value is not None:
+        ax.axvline(x=x_value, color='red', linestyle='--', label=f"x = {x_value:.2f}")
+    
+    ax.set_title("Studentized Range Distribution")
+    ax.set_xlabel("x")
+    ax.set_ylabel("Probability Density")
+    ax.legend()
+    
+    return fig
 
 # Streamlitでステューデント化された範囲分布のページを作成
 def show_studentized_range(language):
@@ -86,6 +88,10 @@ def show_studentized_range(language):
             st.write(f"The x-value is: {x_value:.4f}")
             st.write(f"The p-value is: {p_value:.4f}")
 
+            # 図の描画
+            fig = plot_studentized_range(groups, total_data, x_value)
+            st.pyplot(fig)
+
     elif language == "日本語":
         st.title("ステューデント化された範囲分布の計算")
 
@@ -126,3 +132,7 @@ def show_studentized_range(language):
         if x_value is not None and p_value is not None:
             st.write(f"x値は: {x_value:.4f}")
             st.write(f"p値は: {p_value:.4f}")
+
+            # 図の描画
+            fig = plot_studentized_range(groups, total_data, x_value)
+            st.pyplot(fig)
