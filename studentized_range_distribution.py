@@ -37,6 +37,7 @@ def plot_studentized_range(groups, total_data, x_value):
     # x_valueが存在すれば、その位置に線を引く
     if x_value is not None:
         ax.axvline(x=x_value, color='red', linestyle='--', label=f"x = {x_value:.2f}")
+        ax.fill_between(x, 0, y, where=(x >= x_value), color='blue', alpha=0.3)
     
     ax.set_title("Studentized Range Distribution")
     ax.set_xlabel("x")
