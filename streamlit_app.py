@@ -2,7 +2,8 @@ import streamlit as st
 import standard_normal
 import normal_distribution
 import f_distribution
-import studentized_range_distribution  # ステューデント化された範囲分布のモジュールを追加
+import studentized_range_distribution
+import t_distribution  # t分布モジュールを追加
 
 # トップページの作成
 def show_top_page():
@@ -17,8 +18,7 @@ def show_top_page():
     st.write("2. Normal Distribution / 正規分布")
     st.write("3. F Distribution / F分布")
     st.write("4. Studentized Range Distribution / ステューデント化された範囲分布")
-
-    st.write("Use the sidebar to select a distribution and start calculating.")
+    st.write("5. t Distribution / t分布")
 
 # 言語選択のメニューをサイドバーに追加
 st.sidebar.markdown("### 言語選択 / Language Selection")
@@ -32,7 +32,8 @@ menu = st.sidebar.selectbox(
         "Standard Normal Distribution / 標準正規分布",
         "Normal Distribution / 正規分布",
         "F Distribution / F分布",
-        "Studentized Range Distribution / ステューデント化された範囲分布"
+        "Studentized Range Distribution / ステューデント化された範囲分布",
+        "t Distribution / t分布"
     ]
 )
 
@@ -47,3 +48,5 @@ elif menu == "F Distribution / F分布":
     f_distribution.show_f_distribution(language)
 elif menu == "Studentized Range Distribution / ステューデント化された範囲分布":
     studentized_range_distribution.show_studentized_range(language)
+elif menu == "t Distribution / t分布":
+    t_distribution.show_t_distribution(language)
