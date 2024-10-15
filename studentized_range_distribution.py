@@ -86,7 +86,7 @@ def show_studentized_range(language):
         # 計算結果の表示
         if x_value is not None and p_value is not None:
             st.write(f"The x-value is: {x_value:.4f}")
-            st.write(f"The p-value is: {p_value:.4f}")
+            st.write(f"The p-value is: {1-p_value:.4f}")
 
             # 図の描画
             fig = plot_studentized_range(groups, total_data, x_value)
@@ -131,7 +131,7 @@ def show_studentized_range(language):
         # 計算結果の表示
         if x_value is not None and p_value is not None:
             st.write(f"x値は: {x_value:.4f}")
-            st.write(f"p値は: {p_value:.4f}")
+            st.write(f"p値は: {1-p_value:.4f}")
 
             # 図の描画
             fig = plot_studentized_range(groups, total_data, x_value)
