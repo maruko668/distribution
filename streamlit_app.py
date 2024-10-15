@@ -7,12 +7,14 @@ import f_distribution  # F分布用のモジュールを追加
 def show_top_page():
     st.title("Distribution Calculator App")
     st.write("Welcome to the Distribution Calculator App! You can calculate probabilities and values for different distributions.")
+    st.write("分布計算サイトへようこそ! ここでは様々な分布の確率が計算できます。")
     st.write("Please choose a distribution from the sidebar to begin.")
+    st.write("左のメニューバーで選択してください")
 
     st.subheader("Available Distributions")
-    st.write("1. Standard Normal Distribution (標準正規分布)")
-    st.write("2. Normal Distribution (正規分布)")
-    st.write("3. F Distribution (F分布)")
+    st.write("1. Standard Normal Distribution / 標準正規分布")
+    st.write("2. Normal Distribution / 正規分布")
+    st.write("3. F Distribution / F分布")
 
     st.write("Use the sidebar to select a distribution and start calculating.")
 
