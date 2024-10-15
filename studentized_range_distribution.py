@@ -70,7 +70,7 @@ def show_studentized_range(language):
         # p値が入力された場合
         if p_value_input:
             try:
-                p_value = float(1-p_value_input)
+                p_value = 1-float(p_value_input)
                 x_value = p_to_x(groups, total_data, p_value)
             except ValueError:
                 st.error("Invalid p-value")
@@ -115,7 +115,7 @@ def show_studentized_range(language):
         # p値が入力された場合
         if p_value_input:
             try:
-                p_value = float(1-p_value_input)
+                p_value = 1-float(p_value_input)
                 x_value = p_to_x(groups, total_data, p_value)
             except ValueError:
                 st.error("無効な p 値です")
