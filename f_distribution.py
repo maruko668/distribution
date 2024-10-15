@@ -57,7 +57,7 @@ def show_f_distribution(language):
         # 計算結果の表示
         if x_value is not None and p_value is not None:
             st.write(f"The x-value is: {x_value:.4f}")
-            st.write(f"The p-value is: {p_value:.4f}")
+            st.write(f"The p-value is: {1-p_value:.4f}")
 
             # F分布の図を表示（右側塗りつぶし）
             x = np.linspace(0, 5, 1000)
@@ -126,7 +126,7 @@ def show_f_distribution(language):
         # 計算結果の表示
         if x_value is not None and p_value is not None:
             st.write(f"x値は: {x_value:.4f}")
-            st.write(f"p値は: {p_value:.4f}")
+            st.write(f"p値は: {1-p_value:.4f}")
 
             # F分布の図を表示（右側塗りつぶし）
             x = np.linspace(0, 5, 1000)
