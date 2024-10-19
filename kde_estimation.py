@@ -11,10 +11,12 @@ def kernel_normal(x):
 
 def kernel_uniform(x):
     """一様分布をカーネルとして使用"""
+    # 一様分布は-1から1の範囲で積分すると1になるため、2倍の範囲でスケーリングする
     return uniform.pdf(x, loc=-1, scale=2)
 
 def kernel_triangle(x):
     """対象な三角分布をカーネルとして使用"""
+    # 三角分布は-1から1の範囲で積分すると1になる対称な分布
     return triang.pdf(x, c=0.5, loc=-1, scale=2)
 
 # KDE推定の関数
