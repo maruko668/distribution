@@ -8,17 +8,20 @@ def show_chi_squared_distribution(language):
         st.title("Chi-Squared Distribution")
 
         st.write("""
-        The chi-squared distribution is commonly used in hypothesis testing and confidence interval estimation for variance.
-
-        The p-value is calculated as the probability of observing a value equal to or greater than the given x-value, i.e., the right-tail probability:
+        The probability density function (PDF) for the chi-squared distribution is given by the formula:
 
         $$
-        p = 1 - F(x; k)
+        f(x; k) = \\frac{1}{2^{k/2} \\Gamma(k/2)} x^{(k/2)-1} e^{-x/2}
         $$
 
         where:
-        - $x$ is the chi-squared statistic.
+        - $x$ is the random variable (chi-squared statistic).
         - $k$ is the degrees of freedom.
+        - $\\Gamma$ is the gamma function.
+        """)
+
+        st.write("""
+        The chi-squared distribution is widely used in hypothesis testing, especially in tests of independence and goodness of fit.
         """)
 
         df = st.number_input('Enter the degrees of freedom (k):', value=2, step=1, min_value=1)
@@ -63,17 +66,20 @@ def show_chi_squared_distribution(language):
         st.title("カイ二乗分布")
 
         st.write("""
-        カイ二乗分布は、仮説検定や分散の信頼区間推定によく使用されます。
-
-        p値は、与えられたx値以上の確率、すなわち右側の確率として計算されます：
+        カイ二乗分布の確率密度関数（PDF）は次の式で表されます：
 
         $$
-        p = 1 - F(x; k)
+        f(x; k) = \\frac{1}{2^{k/2} \\Gamma(k/2)} x^{(k/2)-1} e^{-x/2}
         $$
 
         ここで:
-        - $x$ はカイ二乗統計量です。
+        - $x$ はランダム変数（カイ二乗統計量）です。
         - $k$ は自由度です。
+        - $\\Gamma$ はガンマ関数です。
+        """)
+
+        st.write("""
+        カイ二乗分布は、主に独立性の検定や適合度の検定で使用されます。
         """)
 
         df = st.number_input('自由度 (k) を入力してください:', value=2, step=1, min_value=1)
