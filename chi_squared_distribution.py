@@ -53,9 +53,10 @@ def show_chi_squared_distribution(language):
 
             fig, ax = plt.subplots(figsize=(5, 3))
             ax.plot(x, y, label=f'Chi-Squared Distribution (k={df})')
-            ax.fill_between(x, 0, y, where=(x >= x_value), color='red', alpha=0.3)
-            ax.axvline(x=x_value, color='blue', linestyle='--')
+            ax.fill_between(x, 0, y, where=(x >= x_value), color='red', alpha=0.3, label="Right-tail probability")
+            ax.axvline(x=x_value, color='blue', linestyle='--', label=f"x = {x_value:.2f}")
 
+            ax.legend()
             st.pyplot(fig)
 
     elif language == "日本語":
@@ -107,7 +108,8 @@ def show_chi_squared_distribution(language):
 
             fig, ax = plt.subplots(figsize=(5, 3))
             ax.plot(x, y, label=f'カイ二乗分布 (k={df})')
-            ax.fill_between(x, 0, y, where=(x >= x_value), color='red', alpha=0.3)
-            ax.axvline(x=x_value, color='blue', linestyle='--')
+            ax.fill_between(x, 0, y, where=(x >= x_value), color='red', alpha=0.3, label="右側確率")
+            ax.axvline(x=x_value, color='blue', linestyle='--', label=f"x = {x_value:.2f}")
 
+            ax.legend()
             st.pyplot(fig)
