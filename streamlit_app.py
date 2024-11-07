@@ -4,7 +4,8 @@ import normal_distribution
 import f_distribution
 import studentized_range_distribution
 import t_distribution
-import kde_estimation  # カーネル密度推定モジュールを追加
+import kde_estimation  # カーネル密度推定モジュール
+import chi_squared_distribution  # カイ二乗分布モジュールを追加
 
 # トップページの作成
 def show_top_page():
@@ -20,7 +21,8 @@ def show_top_page():
     st.write("3. F Distribution / F分布")
     st.write("4. Studentized Range Distribution / ステューデント化された範囲分布")
     st.write("5. t Distribution / t分布")
-    st.write("6. Kernel Density Estimation / カーネル密度推定")
+    st.write("6. Chi-Squared Distribution / カイ二乗分布")  # 新しい分布を追加
+    st.write("7. Kernel Density Estimation / カーネル密度推定")
 
 # 言語選択のメニューをサイドバーに追加
 st.sidebar.markdown("### 言語選択 / Language Selection")
@@ -36,6 +38,7 @@ menu = st.sidebar.selectbox(
         "F Distribution / F分布",
         "Studentized Range Distribution / ステューデント化された範囲分布",
         "t Distribution / t分布",
+        "Chi-Squared Distribution / カイ二乗分布",  # 新しい分布を追加
         "Kernel Density Estimation / カーネル密度推定"
     ]
 )
@@ -53,5 +56,7 @@ elif menu == "Studentized Range Distribution / ステューデント化された
     studentized_range_distribution.show_studentized_range(language)
 elif menu == "t Distribution / t分布":
     t_distribution.show_t_distribution(language)
+elif menu == "Chi-Squared Distribution / カイ二乗分布":  # 新しい分岐を追加
+    chi_squared_distribution.show_chi_squared_distribution(language)
 elif menu == "Kernel Density Estimation / カーネル密度推定":
     kde_estimation.show_kde_estimation()
