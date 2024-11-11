@@ -26,17 +26,16 @@ def show_f_distribution(language):
         The F-distribution is used primarily to compare the variances of two populations, and is commonly used in analysis of variance (ANOVA).
         """)
 
-        # ユーザーから自由度を入力
+        # User input
         dfn = st.number_input('Enter the degrees of freedom for the numerator (dfn):', value=5, min_value=1)
         dfd = st.number_input('Enter the degrees of freedom for the denominator (dfd):', value=10, min_value=1)
         x_value_input = st.text_input('Enter a value for x (F-distribution):', value="")
         p_value_input = st.text_input('Enter a right-tail p-value (between 0 and 1):', value="")
 
-        # 初期化
+        # Initialization
         x_value = None
         p_value = None
 
-        # どちらかが入力されたら計算
         if x_value_input:
             try:
                 x_value = float(x_value_input)
@@ -54,19 +53,15 @@ def show_f_distribution(language):
             except ValueError:
                 st.error("Invalid p-value")
 
-        # 計算結果の表示
         if x_value is not None and p_value is not None:
             st.write(f"The x-value is: {x_value:.4f}")
             st.write(f"The right-tail p-value is: {p_value:.4f}")
 
-            # F分布の図を表示（右側塗りつぶし）
             x = np.linspace(0, 5, 1000)
             y = f.pdf(x, dfn, dfd)
 
             fig, ax = plt.subplots(figsize=(5, 3))
             ax.plot(x, y, label=f'F Distribution (dfn={dfn}, dfd={dfd})')
-            
-            # 右側塗りつぶし (x_valueより大きい部分)
             ax.fill_between(x, 0, y, where=(x >= x_value), color='blue', alpha=0.3, label="Right-tail probability")
             ax.axvline(x=x_value, color='red', linestyle='--', label=f"x = {x_value:.2f}")
 
@@ -94,7 +89,7 @@ def show_f_distribution(language):
         F分布は主に2つの母集団の分散を比較するために使用され、分散分析 (ANOVA) でよく用いられます。
         """)
 
-        # ユーザーから自由度を入力
+        # ユーザー入力
         dfn = st.number_input('分子の自由度 (dfn) を入力してください:', value=5, min_value=1)
         dfd = st.number_input('分母の自由度 (dfd) を入力してください:', value=10, min_value=1)
         x_value_input = st.text_input('x値を入力してください（F分布）:', value="")
@@ -104,7 +99,6 @@ def show_f_distribution(language):
         x_value = None
         p_value = None
 
-        # どちらかが入力されたら計算
         if x_value_input:
             try:
                 x_value = float(x_value_input)
@@ -122,19 +116,15 @@ def show_f_distribution(language):
             except ValueError:
                 st.error("無効な p 値です")
 
-        # 計算結果の表示
         if x_value is not None and p_value is not None:
             st.write(f"x値は: {x_value:.4f}")
             st.write(f"右側のp値は: {p_value:.4f}")
 
-            # F分布の図を表示（右側塗りつぶし）
             x = np.linspace(0, 5, 1000)
             y = f.pdf(x, dfn, dfd)
 
             fig, ax = plt.subplots(figsize=(5, 3))
             ax.plot(x, y, label=f'F分布 (dfn={dfn}, dfd={dfd})')
-            
-            # 右側塗りつぶし (x_valueより大きい部分)
             ax.fill_between(x, 0, y, where=(x >= x_value), color='blue', alpha=0.3, label="右側確率")
             ax.axvline(x=x_value, color='red', linestyle='--', label=f"x = {x_value:.2f}")
 
